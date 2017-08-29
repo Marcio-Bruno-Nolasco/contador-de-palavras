@@ -6,17 +6,57 @@
  */
 
 #include <stdio.h>
+#include <string.h>
+
 
 int main() {
 
-  char c;
+  
+  char b[200];
+  int tamanho;
+  int palavras=1;
+  int j = 0;
+  
 
-  c = 1;
 
-  while (c != '\n') {
-    scanf("%c", &c);
-  }
+  scanf("%[^\n]s", b);
+  tamanho =strlen(b);
 
-  printf("1\n");
+  while(j <=tamanho ){
+     
+    if ((b[j] == ' ') || (b[j] == '!') || (b[j] == '?') ||(b[j] == '.') || (b[j] ==',') ||( b[j] == ';') || (b[j] == ':') || (b[j] == '-')||(b[j]=='\n'))   {
+     j++;
+      
+      if (b[j+1]== '\n'){
+        palavras = palavras -1;
+      }
+
+      while( (b[j] == ' ') || (b[j] == '!') || (b[j] == '?') ||(b[j] == '.') || (b[j] ==',') ||( b[j] == ';') || (b[j] == ':') || (b[j] == '-')){
+        j++;
+      }
+
+      
+      if(b[j-1] == '.' || b[j-1]==','){
+        if(47 < b[j] && b[j] < 58){
+          palavras= palavras - 1;
+        }
+      }
+
+     palavras ++;
+     
+     }
+    
+
+
+
+   j++;
+   }
+
+ if ((b[tamanho-1] == ' ') || (b[tamanho-1] == '!') || (b[tamanho-1] == '?') ||(b[tamanho-1] == '.') || (b[tamanho-1] ==',') ||( b[tamanho-1] == ';') || (b[tamanho-1] == ':') || (b[tamanho-1] == '-')||(b[tamanho-1]=='\n')){
+  palavras = palavras -1;
+ }
+
+  
+  printf("%d\n", palavras );
   return 0;
 }
